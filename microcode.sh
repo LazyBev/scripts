@@ -5,7 +5,7 @@ root=false
 print=false
 help=false
 
-# Parse command-line arguments
+# Parse arguments
 for arg in "$@"; do
     case $arg in
         -r | --root)
@@ -21,20 +21,20 @@ for arg in "$@"; do
 done
 
 if ! $help; then
-    # Check for root privileges if not using sudo
+    # Check for root privileges
     if ! $root && [[ $EUID -ne 0 ]]; then
         echo "Please run as root or use the -r option or run this script with sudo"
         exit 1
     fi
 
-    # Detect CPU type using /proc/cpuinfo
+    # Detect CPU type
     if grep -q "Intel" /proc/cpuinfo; then
         cpu_type="Intel"
     else
         cpu_type="AMD"
     fi
     
-    # Function to execute commands with or without sudo
+    # Function to execute commands
     run_command() {
         if $root; then
             sudo "$@"
@@ -43,7 +43,7 @@ if ! $help; then
         fi
     }
 
-    # Perform actions based on arguments and detected CPU
+    # Doing things absed on arguments chosen
     if [[ -z $print ]]; then
         if [[ $cpu_type == "Intel" ]]; then
             run_command pacman -Syu intel-ucode

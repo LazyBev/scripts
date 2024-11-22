@@ -4,7 +4,8 @@ set -e
 
 # Variables
 prop=""
-NVIDIA_VENDOR="0x10de"
+NVIDIA_VENDOR="0x$(lspci -nn | grep -i nvidia | sed -n 's/.*\[\([0-9A-Fa-f]\+\):[0-9A-Fa-f]\+\].*/\1/p' | head -n 1
+)"
 
 # Install the necessary packages
 yay -S --noconfirm xf86-video-nouveau vulkan-mesa-layers lib32-vulkan-mesa-layers nvidia-prime nvidia-dkms nvidia-utils

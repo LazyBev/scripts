@@ -8,7 +8,7 @@ help=false
 
 # Parse arguments
 for arg in "$@"; do
-	case $arg in
+    case $arg in
         -r | --root)
             root=true
             ;;
@@ -29,7 +29,7 @@ if ! $help; then
         exit 1
     fi
 
-	# Function to execute commands
+    # Function to execute commands
     run_command() {
         if $root; then
             sudo "$@"

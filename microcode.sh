@@ -19,6 +19,10 @@ for arg in "$@"; do
         -h | --help)
             help=true
             ;;
+	    *)
+  	        echo "Invalid argument. Give correct arguments"
+	        help=true
+	        ;;
     esac
 done
 

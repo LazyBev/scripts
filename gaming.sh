@@ -10,16 +10,16 @@ help=false
 # Parse arguments
 for arg in "$@"; do
     case $arg in
-		-r | --root)
-  			root=true
+	-r | --root)
+  	    root=true
             ;;
-	    -h | --help)
+	-h | --help)
             help=true
             ;;
-	    *)
-  	    	echo "Invalid argument. Give correct arguments"
-	    	help=true
-	    	;;
+	*)
+  	    echo "Invalid argument. Give correct arguments"
+            help=true
+	    ;;
     esac
 done
 

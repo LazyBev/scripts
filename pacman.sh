@@ -12,13 +12,13 @@ for arg in "$@"; do
         -r | --root)
             root=true
             ;;
-		-h | --help)
+	-h | --help)
             help=true
             ;;
-		*)
-  			echo "Invalid argument. Give correct arguments"
-	 		help=true
-			;;
+	*)
+  	    echo "Invalid argument. Give correct arguments"
+	    help=true
+	    ;;
     esac
 done
 
@@ -38,14 +38,14 @@ if ! $help; then
         fi
     }
 
-	# Configuring /etc/pacman.conf
-	run_command() sed -i "/Color/s/^#//g" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
-	run_command() sed -i "/ParallelDownloads/s/^#//g" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
-	run_command() sed -i "/#\\[multilib\\]/s/^#//" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
-	run_command() sed -i "/#Include = \\/etc\\/pacman\\.d\\/mirrorlist/s/^#//" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
-	run_command() sed -i '/#DisableSandbox/a ILoveCandy' /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
+    # Configuring /etc/pacman.conf
+    run_command() sed -i "/Color/s/^#//g" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
+    run_command() sed -i "/ParallelDownloads/s/^#//g" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
+    run_command() sed -i "/#\\[multilib\\]/s/^#//" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
+    run_command() sed -i "/#Include = \\/etc\\/pacman\\.d\\/mirrorlist/s/^#//" /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
+    run_command() sed -i '/#DisableSandbox/a ILoveCandy' /etc/pacman.conf || { echo "Failed to update pacman.conf"; exit 1; }
 else
-	echo "Options:"
+    echo "Options:"
     echo " -r, --root       run script with sudo"
     echo " -h, --help       display this help message"
 fi

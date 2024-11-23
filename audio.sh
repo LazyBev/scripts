@@ -31,7 +31,7 @@ if ! $help; then
         exit 1
     fi
 
-	# Function to execute commands
+    # Function to execute commands
     run_command() {
         if $root; then
             sudo "$@"

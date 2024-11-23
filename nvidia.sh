@@ -13,11 +13,11 @@ for arg in "$@"; do
     case $arg in
 	-r | --root)
 	    root=true
-        ;;
+            ;;
 	-h | --help)
-        help=true
-        ;;
-	*)
+            help=true
+            ;;
+        *)
   	    echo "Invalid argument. Give correct arguments"
 	    help=true
 	    ;;
@@ -32,7 +32,7 @@ if ! $help; then
         exit 1
     fi
 
-	# Function to execute commands
+    # Function to execute commands
     run_command() {
         if $root; then
             sudo "$@"

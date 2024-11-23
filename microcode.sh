@@ -19,16 +19,16 @@ for arg in "$@"; do
         -h | --help)
             help=true
             ;;
-	    *)
-  	        echo "Invalid argument. Give correct arguments"
-	        help=true
-	        ;;
+	*)
+  	    echo "Invalid argument. Give correct arguments"
+	    help=true
+	    ;;
     esac
 done
 
 if ! $help; then
     # Check for root privileges
-    if ! $root [[ $EUID -ne 0 ]]; then
+    if ! $root || [[ $EUID -ne 0 ]]; then
         echo "Please run as root or use the -r option or run this script with sudo"
         exit 1
     fi

@@ -40,7 +40,7 @@ if ! $help; then
         fi
     }
 
- 	run_command pacman -Syu alsa-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol
+ 	run_command pacman -Syu alsa-utils pulseaudio pulseaudio-alsa pavucontrol
   	run_command sed -i '/load-module module-suspend-on-idle/s/^/# /' /etc/pulse/default.pa
 	run_command systemctl enable pulseaudio.service && systemctl start pulseaudio.service
  	sudo bash -c 'echo "defaults.pcm.card 0" > /etc/asound.conf'

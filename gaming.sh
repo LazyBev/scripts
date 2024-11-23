@@ -49,7 +49,7 @@ if ! $help; then
             y | Y)
                 # Install yay
                 git clone https://aur.archlinux.org/yay-bin.git
-                run_command() chown "$user:$user" -R yay-bin && cd yay-bin
+                run_command chown "$user:$user" -R yay-bin && cd yay-bin
                 makepkg -si && cd .. && rm -rf yay
                 ;;
             *)

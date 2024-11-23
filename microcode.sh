@@ -28,7 +28,7 @@ done
 
 if ! $help; then
     # Check for root privileges
-    if ! $root && [[ $EUID -ne 0 ]]; then
+    if ! $root [[ $EUID -ne 0 ]]; then
         echo "Please run as root or use the -r option or run this script with sudo"
         exit 1
     fi
@@ -70,7 +70,7 @@ fi
 read -p "Would you like to reboot now? [y/N]: " reboot_choice
 case $reboot_choice in
     y | Y)
-        run_command reboot
+        reboot
         ;;
     *)
         echo "Reboot skipped. Please reboot manually if necessary."

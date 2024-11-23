@@ -2,7 +2,7 @@
 
 set -e
 
-# Variable
+# Variables
 root=false
 help=false
 

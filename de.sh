@@ -12,13 +12,13 @@ for arg in "$@"; do
         -r | --root)
             root=true
             ;;
-	  -h | --help)
+	-h | --help)
             help=true
             ;;
-	  *)
-  	      echo "Invalid argument. Give correct arguments"
-	        help=true
-	        ;;
+	*)
+  	    echo "Invalid argument. Give correct arguments"
+	    help=true
+            ;;
     esac
 done
 

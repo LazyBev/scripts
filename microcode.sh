@@ -60,6 +60,7 @@ else
     echo " -r, --root       run script with sudo"
     echo " -p, --print-cpu  only print CPU, no installing microcodes"
     echo " -h, --help       display this help message"
+fi
 
 # Prompt the user to reboot
 read -p "Would you like to reboot now? [y/N]: " reboot_choice

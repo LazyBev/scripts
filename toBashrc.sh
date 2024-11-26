@@ -61,23 +61,37 @@ run_command() {
     fi
 }
 
-# Remove the shebang line and set -<flag> lines, and indent the content by 4 spaces
-FILTERED_CONTENT=$(sed -e '/^#!/d' -e '/^set -/d' "$SCRIPT_FILE" | sed 's/^/    /')
-
-# Format the function definition
-FUNC_DEF="
-$FUNC_NAME() {
-$FILTERED_CONTENT
+# Check if the apnd function already exists in ~/.bashrc
+if ! grep -q "tbr()" ~/.bashrc; then
+    # Append the apnd function to ~/.bashrc using tee
+    sudo tee -a ~/.bashrc > /dev/null << 'EOF'
+tbr() {
+    # Remove the shebang line and set -<flag> lines, and indent the content by 4 spaces
+    FILTERED_CONTENT=$(sed -e '/^#!/d' -e '/^set -/d' "$SCRIPT_FILE" | sed 's/^/    /')
+    
+    # Format the function definition
+    FUNC_DEF="
+    $FUNC_NAME() {
+    $FILTERED_CONTENT
+    }
+    "
+    
+    # Append the function to .bashrc
+    echo -e "\n# Function $FUNC_NAME added by script $FUNC_DEF" >> ~/.bashrc
+    
+    # Inform the user and auto source the .bashrc
+    echo "Function '$FUNC_NAME' has been added to ~/.bashrc."
+    echo "Sourcing ~/.bashrc now..."
+    source ~/.bashrc
 }
-"
+EOF
+    echo "tbr function has been added to ~/.bashrc"
+    echo "Sourcing ~/.bashrc now..."
+    source ~/.bashrc
+else
+    echo "tbrfunction already exists in your ~/.bashrc"
+fi
 
-# Append the function to .bashrc
-echo -e "\n# Function $FUNC_NAME added by script $FUNC_DEF" >> ~/.bashrc
-
-# Inform the user and auto source the .bashrc
-echo "Function '$FUNC_NAME' has been added to ~/.bashrc."
-echo "Sourcing ~/.bashrc now..."
-source ~/.bashrc
 
 # Prompt the user to reboot
 read -p "Would you like to reboot now? [y/N]: " reboot_choice

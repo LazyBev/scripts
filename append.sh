@@ -58,4 +58,5 @@ else
 fi
 
 # Reload ~/.bashrc to apply changes
+echo "Sourcing ~/.bashrc now..."
 source ~/.bashrc

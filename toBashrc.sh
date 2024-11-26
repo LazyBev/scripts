@@ -86,20 +86,10 @@ tbr() {
 }
 EOF
     echo "tbr function has been added to ~/.bashrc"
-    echo "Sourcing ~/.bashrc now..."
-    source ~/.bashrc
 else
     echo "tbrfunction already exists in your ~/.bashrc"
 fi
 
-
-# Prompt the user to reboot
-read -p "Would you like to reboot now? [y/N]: " reboot_choice
-case $reboot_choice in
-    y | Y)
-        reboot
-        ;;
-    *)
-        echo "Reboot skipped. Please reboot manually if necessary."
-        ;;
-esac
+# Reload ~/.bashrc to apply changes
+echo "Sourcing ~/.bashrc now..."
+source ~/.bashrc

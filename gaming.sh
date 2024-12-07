@@ -4,15 +4,11 @@ set -e
 
 # Variables
 user=$(whoami)
-root=false
 help=false
 
 # Parse arguments
 for arg in "$@"; do
     case $arg in
-	-r | --root)
-  	    root=true
-            ;;
 	-h | --help)
             help=true
             ;;
@@ -24,23 +20,6 @@ for arg in "$@"; do
 done
 
 if ! $help; then
-
-	# Check for root privileges
-    if ! $root || [[ $EUID -ne 0 ]]; then
-        echo "Please run as root or use the -r option or run this script with sudo"
-        exit 1
-    fi
-    
-    # Function to execute commands
-    run_command() {
-        if $root; then
-            sudo "$@"
-        else
-            "$@"
-        fi
-    }
-
-
     # Check if yay is installed
     if ! command -v yay &> /dev/null; then
         echo "yay is not installed. Please install yay first."
@@ -49,7 +28,7 @@ if ! $help; then
             y | Y)
                 # Install yay
                 git clone https://aur.archlinux.org/yay-bin.git
-                run_command chown "$user:$user" -R yay-bin && cd yay-bin
+                sudo chown "$user:$user" -R yay-bin && cd yay-bin
                 makepkg -si && cd .. && rm -rf yay
                 ;;
             *)
@@ -82,7 +61,6 @@ if ! $help; then
     fi
 else
     echo "Options:"
-    echo " -r, --root       run script with sudo"
     echo " -h, --help       display this help message"
 fi
 

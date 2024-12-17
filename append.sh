@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Check if the apnd function already exists in ~/.bashrc
-if ! grep -q "apnd()" ~/.bashrc; then
-    # Append the apnd function to ~/.bashrc using tee
-    sudo tee -a ~/.bashrc > /dev/null << 'EOF'
 apnd() {
     if [ $# -lt 2 ]; then
         echo "Usage: apnd <text> <file1> [file2 ... fileN]"
@@ -51,12 +47,3 @@ apnd() {
     # Clean up the temporary file
     rm -f "$tmpfile"
 }
-EOF
-    echo "The apnd function has been added to ~/.bashrc"
-else
-    echo "apnd function already exists in your ~/.bashrc"
-fi
-
-# Reload ~/.bashrc to apply changes
-echo "Sourcing ~/.bashrc now..."
-source ~/.bashrc
